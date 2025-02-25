@@ -21,6 +21,36 @@ body {
     margin-bottom: 60px;
 }
 
+.index_img {
+    width: 500px;
+    height: 500px;
+}
+
+.center_content{
+    align-content: center;
+}
+
+.font_title {
+    color: #678488;
+    font-size: 40px;
+    padding-top: 10px;
+    padding-bottom: 0;
+}
+
+.font_subtitle {
+    color: #678488;
+    padding-top: 0px;
+    font-size: 20px;
+}
+
+.footer_txt {
+    color: darkorange;
+    text-align: end;
+    padding-right: 20px;
+    mar-bottom: 0px;
+}
+
+
 header {
     background-color: #e8e1d9
 }

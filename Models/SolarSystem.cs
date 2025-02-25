@@ -16,6 +16,19 @@
             Date = DateTime.Now;
             SimulationNumber++;
         }
+        public SolarSystem(double sunHours, DateTime date)
+        {
+            if (!CheckParameter(sunHours))
+            {
+                const string minSunHours = "A minimum of 1 hour is required.";
+                throw new ArgumentOutOfRangeException(nameof(sunHours), minSunHours);
+            }
+            Type = "Sun energy";
+            SunHours = sunHours;
+            Energy = EnergyCalculation();
+            Date = date;
+            SimulationNumber++;
+        }
         public double EnergyCalculation() => Math.Round(SunHours * 1.5, 2);
         public bool CheckParameter(double energyMethod) => energyMethod >= 1;
         public string ShowSimulation()
