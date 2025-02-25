@@ -1,0 +1,27 @@
+﻿@page
+@model EcoEnergyRazor.Pages.SimulationsModel
+@{
+	ViewData["Title"] = "Simulations list";
+}
+<div class="text-center">
+	<h2>Simulation List</h2>
+</div>
+<table>
+	<thead>
+		<tr>
+			<th>Type</th>
+			<th>Creation Date</th>
+			<th>Energy</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var simulation in Model.Simulations)
+		{
+			<tr>
+				<td>@simulation.GetType()</td>
+				<td>@simulation.GetDate()</td>
+				<td>@simulation.GetEnergy()</td>
+			</tr>
+		}
+	</tbody>
+</table>

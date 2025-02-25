@@ -18,6 +18,19 @@ namespace EcoEnergyRazor.Models
             Date = DateTime.Now;
             SimulationNumber++;
         }
+        public HydroElectricSystem(double waterLevel, DateTime date)
+        {
+            if (!CheckParameter(waterLevel))
+            {
+                const string minWaterLevel = "A minimum of 20 cubic meters are required.";
+                throw new ArgumentOutOfRangeException(nameof(waterLevel), minWaterLevel);
+            }
+            Type = "Hydroelectric energy";
+            WaterLevel = waterLevel;
+            Energy = EnergyCalculation();
+            Date = date;
+            SimulationNumber++;
+        }
         public double EnergyCalculation() => Math.Round(WaterLevel * 9.8 * 0.8, 2);
         public bool CheckParameter(double energyMethod) => energyMethod >= 20;
         public string ShowSimulation()
