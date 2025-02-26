@@ -18,10 +18,15 @@
 		@foreach (var simulation in Model.Simulations)
 		{
 			<tr>
-				<td>@simulation.GetType()</td>
+				<td>@simulation.GetEnergyType()</td>
 				<td>@simulation.GetDate()</td>
 				<td>@simulation.GetEnergy()</td>
 			</tr>
 		}
 	</tbody>
 </table>
+@if (Model.Empty)
+{
+	<p class="text-center">No existeix ninguna simulació</p>
+}
+<a asp-area="" asp-page="/SimCreator"><button type="button">Create new simulation</button></a>
