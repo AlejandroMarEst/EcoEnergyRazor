@@ -1,4 +1,34 @@
 ﻿@page
 @model EcoEnergyRazor.Pages.SimCreatorModel
 @{
+	ViewData["Title"] = "Simulations Creator";
 }
+<form action="" method="post" class="text-center">
+	<label for="Type">Select the type of energy:</label>
+	<select asp-for="Type" id="Type">
+		<option disabled selected> Select an option... </option>
+			@foreach(var type in Enum.GetValues(typeof(Models.EnergySystem.EnergyType)))
+			{
+				<option value=@type>@type</option>
+			}
+	</select>
+	<div class="d-sm-none d-sm-flex flex-column" id="water">
+	<label for="amount_water">What is the water level?</label>
+		<input asp-for="HydroElectricSystem.WaterLevel" type="number" id="amount_water" />
+	</div>
+	<div class="d-sm-none d-sm-flex flex-column" id="wind">
+	<label for="amount_wind">What is the speed of the wind?</label>
+		<input asp-for="EolicSystem.WindVelocity" type="number" id="amount_wind" />
+	</div>
+	<div class="d-sm-none d-sm-flex flex-column" id="solar">
+		<label for="amount_solar">How many hours of sun?</label>
+		<input asp-for="SolarSystem.SunHours" type="number" id="amount_solar" />
+	</div>
+	<label for="price">What is the price of kWh?</label>
+	<input asp-for="EnergySystem.Price" type="number" class="price" required />
+	<label for="ratio">How much energy ratio?</label>
+	<input asp-for="EnergySystem.Ratio" type="number" class="ratio" required />
+	<label for="cost">How much does a kWh cost the company?</label>
+	<input asp-for="EnergySystem.Cost" type="number" class="cost" required />
+	<input type="submit" value="Submit">
+</form>

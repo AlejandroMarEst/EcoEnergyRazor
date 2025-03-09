@@ -47,9 +47,18 @@ body {
     color: darkorange;
     text-align: end;
     padding-right: 20px;
-    mar-bottom: 0px;
+    margin-bottom: 0px;
 }
 
+label{
+    font-size: 40px;
+}
+
+#amount{
+    height: 60px;
+    width: 200px;
+    font-size: 24px;
+}
 
 header {
     background-color: #e8e1d9
