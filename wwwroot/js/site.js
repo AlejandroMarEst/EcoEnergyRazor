@@ -1,4 +1,24 @@
-﻿// Please see documentation at https://learn.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
-
-// Write your JavaScript code.
+﻿const energy = document.querySelector("#Type")
+const water = document.querySelectorAll("#water")
+const wind = document.querySelectorAll("#wind")
+const solar = document.querySelectorAll("#solar")
+energy.addEventListener("change", hideInput)
+function hideInput() {
+    switch (energy.value) {
+        case "HydroElectricEnergy":
+            water.forEach(element => element.classList.remove("d-sm-none"));
+            solar.forEach(element => element.classList.add("d-sm-none"));
+            wind.forEach(element => element.classList.add("d-sm-none"));
+            break;
+        case "SolarEnergy":
+            water.forEach(element => element.classList.add("d-sm-none"));
+            solar.forEach(element => element.classList.remove("d-sm-none"));
+            wind.forEach(element => element.classList.add("d-sm-none"));
+            break;
+        case "EolicEnergy":
+            water.forEach(element => element.classList.add("d-sm-none"));
+            solar.forEach(element => element.classList.add("d-sm-none"));
+            wind.forEach(element => element.classList.remove("d-sm-none"));
+            break;
+    }
+}
