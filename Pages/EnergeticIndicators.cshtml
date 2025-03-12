@@ -1,0 +1,441 @@
+﻿@page
+@model EcoEnergyRazor.Pages.EnergeticIndicatorsModel
+@{
+	ViewData["title"] = "Energetic Indicators";
+}
+<div class="center_btn">
+    <a href="#NetProduction" class="btn btn-primary">Net production over 3000</a>
+    <a href="#GasConsumption" class="btn btn-primary">Gas consumption over 100</a>
+    <a href="#AvgNetProd" class="btn btn-primary">Average net production per year</a>
+    <a href="#ElectricDemand" class="btn btn-primary">Electric demand over 4000 and available production under 300</a>
+
+</div>
+<div>
+    <h2>Detailed info</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>PBEE_Hydroelectric</th>
+                <th>PBEE_Coal</th>
+                <th>PBEE_NaturalGas</th>
+                <th>PBEE_FuelOil</th>
+                <th>PBEE_CombinedCycle</th>
+                <th>PBEE_Nuclear</th>
+                <th>CDEEBC_GrossProduction</th>
+                <th>CDEEBC_AuxConsumption</th>
+                <th>CDEEBC_NetProduction</th>
+                <th>CDEEBC_PumpConsumption</th>
+                <th>CDEEBC_AvailableProduction</th>
+                <th>CDEEBC_TotalNetworkSalesCentral</th>
+                <th>CDEEBC_ElectricExchangeBalance</th>
+                <th>CDEEBC_ElectricDemand</th>
+                <th>CDEEBC_TotalRegulatedMarket</th>
+                <th>CDEEBC_TotalFreeMarket</th>
+                <th>FEE_Industry</th>
+                <th>FEE_Tertiary</th>
+                <th>FEE_Domestic</th>
+                <th>FEE_Primary</th>
+                <th>FEE_Energetic</th>
+                <th>FEEI_PublicWorksConsumption</th>
+                <th>FEEI_IronSteelFoundry</th>
+                <th>FEEI_Metallurgy</th>
+                <th>FEEI_GlassIndustry</th>
+                <th>FEEI_CementLimeGypsum</th>
+                <th>FEEI_OtherConstructionMaterials</th>
+                <th>FEEI_ChemicalPetrochemical</th>
+                <th>FEEI_TransportMediumConstruction</th>
+                <th>FEEI_OtherMetalTransformation</th>
+                <th>FEEI_FoodBeverageTobacco</th>
+                <th>FEEI_TextileClothingLeatherFootwear</th>
+                <th>FEEI_PulpPaperCardboard</th>
+                <th>FEEI_OtherIndustries</th>
+                <th>DGGN_FrontierPointEnagas</th>
+                <th>DGGN_LNGDistributionSupply</th>
+                <th>DGGN_ThermalPowerPlantGNCConsumption</th>
+                <th>CCAC_AutoGasoline</th>
+                <th>CCAC_AutoDieselA</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.FileExists && Model.FileHasRecords)
+			{@foreach (var indicator in Model.EnergyIndicatorList)
+				{
+            <tr>
+                <td>@indicator.Date</td>
+                <td>@indicator.PBEE_Hydroelectric</td>
+                <td>@indicator.PBEE_Coal</td>
+                <td>@indicator.PBEE_NaturalGas</td>
+                <td>@indicator.PBEE_FuelOil</td>
+                <td>@indicator.PBEE_CombinedCycle</td>
+                <td>@indicator.PBEE_Nuclear</td>
+                <td>@indicator.CDEEBC_GrossProduction</td>
+                <td>@indicator.CDEEBC_AuxConsumption</td>
+                <td>@indicator.CDEEBC_NetProduction</td>
+                <td>@indicator.CDEEBC_PumpConsumption</td>
+                <td>@indicator.CDEEBC_AvailableProduction</td>
+                <td>@indicator.CDEEBC_TotalNetworkSalesCentral</td>
+                <td>@indicator.CDEEBC_ElectricExchangeBalance</td>
+                <td>@indicator.CDEEBC_ElectricDemand</td>
+                <td>@indicator.CDEEBC_TotalRegulatedMarket</td>
+                <td>@indicator.CDEEBC_TotalFreeMarket</td>
+                <td>@indicator.FEE_Industry</td>
+                <td>@indicator.FEE_Tertiary</td>
+                <td>@indicator.FEE_Domestic</td>
+                <td>@indicator.FEE_Primary</td>
+                <td>@indicator.FEE_Energetic</td>
+                <td>@indicator.FEEI_PublicWorksConsumption</td>
+                <td>@indicator.FEEI_IronSteelFoundry</td>
+                <td>@indicator.FEEI_Metallurgy</td>
+                <td>@indicator.FEEI_GlassIndustry</td>
+                <td>@indicator.FEEI_CementLimeGypsum</td>
+                <td>@indicator.FEEI_OtherConstructionMaterials</td>
+                <td>@indicator.FEEI_ChemicalPetrochemical</td>
+                <td>@indicator.FEEI_TransportMediumConstruction</td>
+                <td>@indicator.FEEI_OtherMetalTransformation</td>
+                <td>@indicator.FEEI_FoodBeverageTobacco</td>
+                <td>@indicator.FEEI_TextileClothingLeatherFootwear</td>
+                <td>@indicator.FEEI_PulpPaperCardboard</td>
+                <td>@indicator.FEEI_OtherIndustries</td>
+                <td>@indicator.DGGN_FrontierPointEnagas</td>
+                <td>@indicator.DGGN_LNGDistributionSupply</td>
+                <td>@indicator.DGGN_ThermalPowerPlantGNCConsumption</td>
+                <td>@indicator.CCAC_AutoGasoline</td>
+                <td>@indicator.CCAC_AutoDieselA</td>
+            </tr>
+				} }
+			else
+			{
+            <tr>There are no energy indicators</tr>
+			}
+        </tbody>
+    </table>
+</div>
+<div>
+    <h2 id="NetProduction">Records with net production over 3000</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>PBEE_Hydroelectric</th>
+                <th>PBEE_Coal</th>
+                <th>PBEE_NaturalGas</th>
+                <th>PBEE_FuelOil</th>
+                <th>PBEE_CombinedCycle</th>
+                <th>PBEE_Nuclear</th>
+                <th>CDEEBC_GrossProduction</th>
+                <th>CDEEBC_AuxConsumption</th>
+                <th>CDEEBC_NetProduction</th>
+                <th>CDEEBC_PumpConsumption</th>
+                <th>CDEEBC_AvailableProduction</th>
+                <th>CDEEBC_TotalNetworkSalesCentral</th>
+                <th>CDEEBC_ElectricExchangeBalance</th>
+                <th>CDEEBC_ElectricDemand</th>
+                <th>CDEEBC_TotalRegulatedMarket</th>
+                <th>CDEEBC_TotalFreeMarket</th>
+                <th>FEE_Industry</th>
+                <th>FEE_Tertiary</th>
+                <th>FEE_Domestic</th>
+                <th>FEE_Primary</th>
+                <th>FEE_Energetic</th>
+                <th>FEEI_PublicWorksConsumption</th>
+                <th>FEEI_IronSteelFoundry</th>
+                <th>FEEI_Metallurgy</th>
+                <th>FEEI_GlassIndustry</th>
+                <th>FEEI_CementLimeGypsum</th>
+                <th>FEEI_OtherConstructionMaterials</th>
+                <th>FEEI_ChemicalPetrochemical</th>
+                <th>FEEI_TransportMediumConstruction</th>
+                <th>FEEI_OtherMetalTransformation</th>
+                <th>FEEI_FoodBeverageTobacco</th>
+                <th>FEEI_TextileClothingLeatherFootwear</th>
+                <th>FEEI_PulpPaperCardboard</th>
+                <th>FEEI_OtherIndustries</th>
+                <th>DGGN_FrontierPointEnagas</th>
+                <th>DGGN_LNGDistributionSupply</th>
+                <th>DGGN_ThermalPowerPlantGNCConsumption</th>
+                <th>CCAC_AutoGasoline</th>
+                <th>CCAC_AutoDieselA</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.FileExists && Model.FileHasRecords)
+			{@foreach (var indicator in Model.EnergyIndicatorList.Where(x => x.CDEEBC_NetProduction > 3000).OrderBy(x => x.CDEEBC_NetProduction))
+				{
+            <tr>
+                <td>@indicator.Date</td>
+                <td>@indicator.PBEE_Hydroelectric</td>
+                <td>@indicator.PBEE_Coal</td>
+                <td>@indicator.PBEE_NaturalGas</td>
+                <td>@indicator.PBEE_FuelOil</td>
+                <td>@indicator.PBEE_CombinedCycle</td>
+                <td>@indicator.PBEE_Nuclear</td>
+                <td>@indicator.CDEEBC_GrossProduction</td>
+                <td>@indicator.CDEEBC_AuxConsumption</td>
+                <td>@indicator.CDEEBC_NetProduction</td>
+                <td>@indicator.CDEEBC_PumpConsumption</td>
+                <td>@indicator.CDEEBC_AvailableProduction</td>
+                <td>@indicator.CDEEBC_TotalNetworkSalesCentral</td>
+                <td>@indicator.CDEEBC_ElectricExchangeBalance</td>
+                <td>@indicator.CDEEBC_ElectricDemand</td>
+                <td>@indicator.CDEEBC_TotalRegulatedMarket</td>
+                <td>@indicator.CDEEBC_TotalFreeMarket</td>
+                <td>@indicator.FEE_Industry</td>
+                <td>@indicator.FEE_Tertiary</td>
+                <td>@indicator.FEE_Domestic</td>
+                <td>@indicator.FEE_Primary</td>
+                <td>@indicator.FEE_Energetic</td>
+                <td>@indicator.FEEI_PublicWorksConsumption</td>
+                <td>@indicator.FEEI_IronSteelFoundry</td>
+                <td>@indicator.FEEI_Metallurgy</td>
+                <td>@indicator.FEEI_GlassIndustry</td>
+                <td>@indicator.FEEI_CementLimeGypsum</td>
+                <td>@indicator.FEEI_OtherConstructionMaterials</td>
+                <td>@indicator.FEEI_ChemicalPetrochemical</td>
+                <td>@indicator.FEEI_TransportMediumConstruction</td>
+                <td>@indicator.FEEI_OtherMetalTransformation</td>
+                <td>@indicator.FEEI_FoodBeverageTobacco</td>
+                <td>@indicator.FEEI_TextileClothingLeatherFootwear</td>
+                <td>@indicator.FEEI_PulpPaperCardboard</td>
+                <td>@indicator.FEEI_OtherIndustries</td>
+                <td>@indicator.DGGN_FrontierPointEnagas</td>
+                <td>@indicator.DGGN_LNGDistributionSupply</td>
+                <td>@indicator.DGGN_ThermalPowerPlantGNCConsumption</td>
+                <td>@indicator.CCAC_AutoGasoline</td>
+                <td>@indicator.CCAC_AutoDieselA</td>
+            </tr>
+				} }
+			else
+			{
+            <tr>There are no energy indicators</tr>
+			}
+        </tbody>
+    </table>
+</div>
+<div>
+    <h2 id="GasConsumption">Records with gas consumption over 100</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>PBEE_Hydroelectric</th>
+                <th>PBEE_Coal</th>
+                <th>PBEE_NaturalGas</th>
+                <th>PBEE_FuelOil</th>
+                <th>PBEE_CombinedCycle</th>
+                <th>PBEE_Nuclear</th>
+                <th>CDEEBC_GrossProduction</th>
+                <th>CDEEBC_AuxConsumption</th>
+                <th>CDEEBC_NetProduction</th>
+                <th>CDEEBC_PumpConsumption</th>
+                <th>CDEEBC_AvailableProduction</th>
+                <th>CDEEBC_TotalNetworkSalesCentral</th>
+                <th>CDEEBC_ElectricExchangeBalance</th>
+                <th>CDEEBC_ElectricDemand</th>
+                <th>CDEEBC_TotalRegulatedMarket</th>
+                <th>CDEEBC_TotalFreeMarket</th>
+                <th>FEE_Industry</th>
+                <th>FEE_Tertiary</th>
+                <th>FEE_Domestic</th>
+                <th>FEE_Primary</th>
+                <th>FEE_Energetic</th>
+                <th>FEEI_PublicWorksConsumption</th>
+                <th>FEEI_IronSteelFoundry</th>
+                <th>FEEI_Metallurgy</th>
+                <th>FEEI_GlassIndustry</th>
+                <th>FEEI_CementLimeGypsum</th>
+                <th>FEEI_OtherConstructionMaterials</th>
+                <th>FEEI_ChemicalPetrochemical</th>
+                <th>FEEI_TransportMediumConstruction</th>
+                <th>FEEI_OtherMetalTransformation</th>
+                <th>FEEI_FoodBeverageTobacco</th>
+                <th>FEEI_TextileClothingLeatherFootwear</th>
+                <th>FEEI_PulpPaperCardboard</th>
+                <th>FEEI_OtherIndustries</th>
+                <th>DGGN_FrontierPointEnagas</th>
+                <th>DGGN_LNGDistributionSupply</th>
+                <th>DGGN_ThermalPowerPlantGNCConsumption</th>
+                <th>CCAC_AutoGasoline</th>
+                <th>CCAC_AutoDieselA</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.FileExists && Model.FileHasRecords)
+			{@foreach (var indicator in Model.EnergyIndicatorList.Where(x => x.CCAC_AutoGasoline > 100).OrderByDescending(x => x.CCAC_AutoGasoline))
+				{
+            <tr>
+                <td>@indicator.Date</td>
+                <td>@indicator.PBEE_Hydroelectric</td>
+                <td>@indicator.PBEE_Coal</td>
+                <td>@indicator.PBEE_NaturalGas</td>
+                <td>@indicator.PBEE_FuelOil</td>
+                <td>@indicator.PBEE_CombinedCycle</td>
+                <td>@indicator.PBEE_Nuclear</td>
+                <td>@indicator.CDEEBC_GrossProduction</td>
+                <td>@indicator.CDEEBC_AuxConsumption</td>
+                <td>@indicator.CDEEBC_NetProduction</td>
+                <td>@indicator.CDEEBC_PumpConsumption</td>
+                <td>@indicator.CDEEBC_AvailableProduction</td>
+                <td>@indicator.CDEEBC_TotalNetworkSalesCentral</td>
+                <td>@indicator.CDEEBC_ElectricExchangeBalance</td>
+                <td>@indicator.CDEEBC_ElectricDemand</td>
+                <td>@indicator.CDEEBC_TotalRegulatedMarket</td>
+                <td>@indicator.CDEEBC_TotalFreeMarket</td>
+                <td>@indicator.FEE_Industry</td>
+                <td>@indicator.FEE_Tertiary</td>
+                <td>@indicator.FEE_Domestic</td>
+                <td>@indicator.FEE_Primary</td>
+                <td>@indicator.FEE_Energetic</td>
+                <td>@indicator.FEEI_PublicWorksConsumption</td>
+                <td>@indicator.FEEI_IronSteelFoundry</td>
+                <td>@indicator.FEEI_Metallurgy</td>
+                <td>@indicator.FEEI_GlassIndustry</td>
+                <td>@indicator.FEEI_CementLimeGypsum</td>
+                <td>@indicator.FEEI_OtherConstructionMaterials</td>
+                <td>@indicator.FEEI_ChemicalPetrochemical</td>
+                <td>@indicator.FEEI_TransportMediumConstruction</td>
+                <td>@indicator.FEEI_OtherMetalTransformation</td>
+                <td>@indicator.FEEI_FoodBeverageTobacco</td>
+                <td>@indicator.FEEI_TextileClothingLeatherFootwear</td>
+                <td>@indicator.FEEI_PulpPaperCardboard</td>
+                <td>@indicator.FEEI_OtherIndustries</td>
+                <td>@indicator.DGGN_FrontierPointEnagas</td>
+                <td>@indicator.DGGN_LNGDistributionSupply</td>
+                <td>@indicator.DGGN_ThermalPowerPlantGNCConsumption</td>
+                <td>@indicator.CCAC_AutoGasoline</td>
+                <td>@indicator.CCAC_AutoDieselA</td>
+            </tr>
+				} }
+			else
+			{
+            <tr>There are no energy indicators</tr>
+			}
+        </tbody>
+    </table>
+</div>
+<div>
+    <h2 id="AvgNetProd">Average Net Production for year</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Year</th>
+                <th>Avg Net Production</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.FileExists && Model.FileHasRecords && Model.AvgNetProductionPerYear.Count > 0)
+			{@foreach (var avg in Model.AvgNetProductionPerYear)
+				{
+            <tr>
+                <td>@avg.Year</td>
+                <td>@avg.AvgNetProd</td>
+            </tr>
+				} }
+			else
+			{
+            <tr>There are no averages</tr>
+			}
+        </tbody>
+    </table>
+</div>
+<div>
+    <h2 id="ElectricDemand">Electric demand over 4000 and available production under 300</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>PBEE_Hydroelectric</th>
+                <th>PBEE_Coal</th>
+                <th>PBEE_NaturalGas</th>
+                <th>PBEE_FuelOil</th>
+                <th>PBEE_CombinedCycle</th>
+                <th>PBEE_Nuclear</th>
+                <th>CDEEBC_GrossProduction</th>
+                <th>CDEEBC_AuxConsumption</th>
+                <th>CDEEBC_NetProduction</th>
+                <th>CDEEBC_PumpConsumption</th>
+                <th>CDEEBC_AvailableProduction</th>
+                <th>CDEEBC_TotalNetworkSalesCentral</th>
+                <th>CDEEBC_ElectricExchangeBalance</th>
+                <th>CDEEBC_ElectricDemand</th>
+                <th>CDEEBC_TotalRegulatedMarket</th>
+                <th>CDEEBC_TotalFreeMarket</th>
+                <th>FEE_Industry</th>
+                <th>FEE_Tertiary</th>
+                <th>FEE_Domestic</th>
+                <th>FEE_Primary</th>
+                <th>FEE_Energetic</th>
+                <th>FEEI_PublicWorksConsumption</th>
+                <th>FEEI_IronSteelFoundry</th>
+                <th>FEEI_Metallurgy</th>
+                <th>FEEI_GlassIndustry</th>
+                <th>FEEI_CementLimeGypsum</th>
+                <th>FEEI_OtherConstructionMaterials</th>
+                <th>FEEI_ChemicalPetrochemical</th>
+                <th>FEEI_TransportMediumConstruction</th>
+                <th>FEEI_OtherMetalTransformation</th>
+                <th>FEEI_FoodBeverageTobacco</th>
+                <th>FEEI_TextileClothingLeatherFootwear</th>
+                <th>FEEI_PulpPaperCardboard</th>
+                <th>FEEI_OtherIndustries</th>
+                <th>DGGN_FrontierPointEnagas</th>
+                <th>DGGN_LNGDistributionSupply</th>
+                <th>DGGN_ThermalPowerPlantGNCConsumption</th>
+                <th>CCAC_AutoGasoline</th>
+                <th>CCAC_AutoDieselA</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.FileExists && Model.FileHasRecords)
+			{@foreach (var indicator in Model.ElectricityDemand)
+				{
+            <tr>
+                <td>@indicator.Date</td>
+                <td>@indicator.PBEE_Hydroelectric</td>
+                <td>@indicator.PBEE_Coal</td>
+                <td>@indicator.PBEE_NaturalGas</td>
+                <td>@indicator.PBEE_FuelOil</td>
+                <td>@indicator.PBEE_CombinedCycle</td>
+                <td>@indicator.PBEE_Nuclear</td>
+                <td>@indicator.CDEEBC_GrossProduction</td>
+                <td>@indicator.CDEEBC_AuxConsumption</td>
+                <td>@indicator.CDEEBC_NetProduction</td>
+                <td>@indicator.CDEEBC_PumpConsumption</td>
+                <td>@indicator.CDEEBC_AvailableProduction</td>
+                <td>@indicator.CDEEBC_TotalNetworkSalesCentral</td>
+                <td>@indicator.CDEEBC_ElectricExchangeBalance</td>
+                <td>@indicator.CDEEBC_ElectricDemand</td>
+                <td>@indicator.CDEEBC_TotalRegulatedMarket</td>
+                <td>@indicator.CDEEBC_TotalFreeMarket</td>
+                <td>@indicator.FEE_Industry</td>
+                <td>@indicator.FEE_Tertiary</td>
+                <td>@indicator.FEE_Domestic</td>
+                <td>@indicator.FEE_Primary</td>
+                <td>@indicator.FEE_Energetic</td>
+                <td>@indicator.FEEI_PublicWorksConsumption</td>
+                <td>@indicator.FEEI_IronSteelFoundry</td>
+                <td>@indicator.FEEI_Metallurgy</td>
+                <td>@indicator.FEEI_GlassIndustry</td>
+                <td>@indicator.FEEI_CementLimeGypsum</td>
+                <td>@indicator.FEEI_OtherConstructionMaterials</td>
+                <td>@indicator.FEEI_ChemicalPetrochemical</td>
+                <td>@indicator.FEEI_TransportMediumConstruction</td>
+                <td>@indicator.FEEI_OtherMetalTransformation</td>
+                <td>@indicator.FEEI_FoodBeverageTobacco</td>
+                <td>@indicator.FEEI_TextileClothingLeatherFootwear</td>
+                <td>@indicator.FEEI_PulpPaperCardboard</td>
+                <td>@indicator.FEEI_OtherIndustries</td>
+                <td>@indicator.DGGN_FrontierPointEnagas</td>
+                <td>@indicator.DGGN_LNGDistributionSupply</td>
+                <td>@indicator.DGGN_ThermalPowerPlantGNCConsumption</td>
+                <td>@indicator.CCAC_AutoGasoline</td>
+                <td>@indicator.CCAC_AutoDieselA</td>
+            </tr>
+				} }
+			else
+			{
+            <tr>There are no energy indicators</tr>
+			}
+        </tbody>
+    </table>
+</div>

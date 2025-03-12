@@ -27,8 +27,8 @@ namespace EcoEnergyRazor.Pages
                 using var reader = new StreamReader(filePath);
                 using (var csv = new CsvReader(reader, config))
                 {
-                    var registres = csv.GetRecords<WaterConsumptionLog>();
-                    foreach (var line in registres)
+                    var records = csv.GetRecords<WaterConsumptionLog>();
+                    foreach (var line in records)
                     {
                         WaterConsumptionList.Add(line);
                     }
