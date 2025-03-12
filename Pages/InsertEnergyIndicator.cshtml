@@ -1,0 +1,50 @@
+﻿@page
+@model EcoEnergyRazor.Pages.InsertEnergyIndicatorModel
+@{
+	ViewData["Title"] = "Add Energy Indicator";
+}
+<h2>Add Energy Indicator</h2>
+<form method="post">
+	<div class="form-group">
+		<label asp-for="EnergyIndicator.Date">
+			Date (Required):
+			<input asp-for="EnergyIndicator.Date" class="form-control" />
+			<span asp-validation-for="EnergyIndicator.Date" class="text-danger"></span>
+		</label>
+	</div>
+
+	<div class="form-group">
+		<label asp-for="EnergyIndicator.CDEEBC_NetProduction">
+			Net Production (Required):
+			<input asp-for="EnergyIndicator.CDEEBC_NetProduction" class="form-control" />
+			<span asp-validation-for="EnergyIndicator.CDEEBC_NetProduction" class="text-danger"></span>
+		</label>
+	</div>
+
+	<div class="form-group">
+		<label asp-for="EnergyIndicator.CCAC_AutoGasoline">
+			Automobile Gasoline Consumption (Required):
+			<input asp-for="EnergyIndicator.CCAC_AutoGasoline" class="form-control" />
+			<span asp-validation-for="EnergyIndicator.CCAC_AutoGasoline" class="text-danger"></span>
+		</label>
+	</div>
+
+	<div class="form-group">
+		<label asp-for="EnergyIndicator.CDEEBC_ElectricDemand">
+			Electric Demand (Required):
+			<input asp-for="EnergyIndicator.CDEEBC_ElectricDemand" class="form-control" />
+			<span asp-validation-for="EnergyIndicator.CDEEBC_ElectricDemand" class="text-danger"></span>
+		</label>
+	</div>
+
+	<div class="form-group">
+		<label asp-for="EnergyIndicator.CDEEBC_AvailableProduction">
+			Available Production (Required):
+			<input asp-for="EnergyIndicator.CDEEBC_AvailableProduction" class="form-control" />
+			<span asp-validation-for="EnergyIndicator.CDEEBC_AvailableProduction" class="text-danger"></span>
+		</label>
+	</div>
+
+	<br />
+	<button type="submit" class="btn btn-primary" id="Submit">Add</button>
+</form>
