@@ -2,6 +2,12 @@
 @model EcoEnergyRazor.Pages.WaterConsumptionModel
 @{
 	<div>
+		<a href="#Top10Regions" class="btn btn-primary">10 Municipis amb més consum d'aigua</a>
+		<a href="#AverageConsumption" class="btn btn-primary">Mitjanes Comarques</a>
+		<a href="#SuspiciousConsumptions" class="btn btn-primary">Consums Sospitosos</a>
+		<a href="#RisingConsumptions" class="btn btn-primary">Comarques creixents</a>
+	</div>
+	<div>
 		<h2>Water Consumption detailed info</h2>
 		<table>
 			<thead>
@@ -38,7 +44,7 @@
 		</table>
 	</div>
 	<div>
-		<h2>Top 10 most consuming regions</h2>
+		<h2 id="Top10Regions">Top 10 most consuming regions</h2>
 		<table>
 			<thead>
 				<tr>
@@ -74,7 +80,7 @@
 		</table>
 	</div>
 	<div>
-		<h2>Average water consumption per region</h2>
+		<h2 id="AverageConsumption">Average water consumption per region</h2>
 		<table>
 			<thead>
 				<tr>
@@ -101,7 +107,7 @@
 		</table>
 	</div>
 	<div>
-		<h2>Suspicious consumptions</h2>
+		<h2 id="SuspiciousConsumptions">Suspicious consumptions</h2>
 		<table>
 			<thead>
 				<tr>
@@ -140,7 +146,7 @@
 		</table>
 	</div>
 	<div>
-		<h2>Regions with rising consumptions (Last 5 years)</h2>
+		<h2 id="RisingConsumptions">Regions with rising consumptions (Last 5 years)</h2>
 		<ul>
 			@foreach (string region in Model.RisingConsumptions)
 			{
@@ -148,4 +154,5 @@
 			}
 		</ul>
 	</div>
+	<a asp-page="/AddWaterConsumption" class="btn btn-primary">Add Water Consumption</a>
 }

@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<WaterConsumptions>
+  <WaterConsumption>
+    <Year>2010</Year>
+    <Region>
+      <ID>8479</ID>
+      <Name>Penedes</Name>
+    </Region>
+    <Population>0</Population>
+    <DomesticNET>4556</DomesticNET>
+    <EconomicActivities>879787</EconomicActivities>
+    <Total>897</Total>
+    <DomesticConsumption>798</DomesticConsumption>
+  </WaterConsumption>
+  <WaterConsumption>
+    <Year>2006</Year>
+    <Region>
+      <ID>9879</ID>
+      <Name>Barcelona-Badalona</Name>
+    </Region>
+    <Population>8979</Population>
+    <DomesticNET>8</DomesticNET>
+    <EconomicActivities>789</EconomicActivities>
+    <Total>789</Total>
+    <DomesticConsumption>789</DomesticConsumption>
+  </WaterConsumption>
+</WaterConsumptions>
