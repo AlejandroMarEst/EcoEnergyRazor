@@ -1,0 +1,151 @@
+﻿@page
+@model EcoEnergyRazor.Pages.WaterConsumptionModel
+@{
+	<div>
+		<h2>Water Consumption detailed info</h2>
+		<table>
+			<thead>
+				<tr>
+					<th>Year</th>
+					<th>Region Code</th>
+					<th>Region Name</th>
+					<th>Population</th>
+					<th>Domestic Grid</th>
+					<th>Economic activities & own sources</th>
+					<th>Total</th>
+					<th>Domestic consumption per capita</th>
+				</tr>
+			</thead>
+			<tbody>
+				@if (!Model.Exists)
+				{
+					<tr><td>There aren't any cosumptions</td></tr>
+				} else {
+					@foreach (var simulation in Model.WaterConsumptionList)
+					{
+						<tr>
+							<td>@simulation.Year</td>
+							<td>@simulation.RegionID</td>
+							<td>@simulation.RegionName</td>
+							<td>@simulation.Population</td>
+							<td>@simulation.DomesticNET</td>
+							<td>@simulation.EconomicActivities</td>
+							<td>@simulation.Total</td>
+							<td>@simulation.DomesticConsumption</td>
+						</tr>
+					}}
+			</tbody>
+		</table>
+	</div>
+	<div>
+		<h2>Top 10 most consuming regions</h2>
+		<table>
+			<thead>
+				<tr>
+					<th>Year</th>
+					<th>Region Code</th>
+					<th>Region Name</th>
+					<th>Population</th>
+					<th>Domestic Grid</th>
+					<th>Economic activities & own sources</th>
+					<th>Total</th>
+					<th>Domestic consumption per capita</th>
+				</tr>
+			</thead>
+			<tbody>
+				@if (!Model.Exists)
+				{
+					<tr><td>There aren't any cosumptions</td></tr>
+				} else {
+					@foreach (var simulation in Model.BiggestConsumptions.Take(10))
+					{
+						<tr>
+							<td>@simulation.Year</td>
+							<td>@simulation.RegionID</td>
+							<td>@simulation.RegionName</td>
+							<td>@simulation.Population</td>
+							<td>@simulation.DomesticNET</td>
+							<td>@simulation.EconomicActivities</td>
+							<td>@simulation.Total</td>
+							<td>@simulation.DomesticConsumption</td>
+						</tr>
+					}}
+			</tbody>
+		</table>
+	</div>
+	<div>
+		<h2>Average water consumption per region</h2>
+		<table>
+			<thead>
+				<tr>
+					<th>Region Name</th>
+					<th>Average</th>
+				</tr>
+			</thead>
+			<tbody>
+				@if (!Model.Exists)
+				{
+					<tr><td>There aren't any cosumptions</td></tr>
+				}
+				else
+				{
+					@foreach (var simulation in Model.AverageConsumptions)
+					{
+						<tr>
+							<td>@simulation.Region</td>
+							<td>@simulation.AverageConsumption</td>
+						</tr>
+					}
+				}
+			</tbody>
+		</table>
+	</div>
+	<div>
+		<h2>Suspicious consumptions</h2>
+		<table>
+			<thead>
+				<tr>
+					<th>Year</th>
+					<th>Region Code</th>
+					<th>Region Name</th>
+					<th>Population</th>
+					<th>Domestic Grid</th>
+					<th>Economic activities & own sources</th>
+					<th>Total</th>
+					<th>Domestic consumption per capita</th>
+				</tr>
+			</thead>
+			<tbody>
+				@if (!Model.Exists)
+				{
+					<tr><td>There aren't any suspicious consumptions</td></tr>
+				}
+				else
+				{
+					@foreach (var simulation in Model.BiggestConsumptions.Where(x => x.Total > 999999))
+					{
+						<tr>
+							<td>@simulation.Year</td>
+							<td>@simulation.RegionID</td>
+							<td>@simulation.RegionName</td>
+							<td>@simulation.Population</td>
+							<td>@simulation.DomesticNET</td>
+							<td>@simulation.EconomicActivities</td>
+							<td>@simulation.Total</td>
+							<td>@simulation.DomesticConsumption</td>
+						</tr>
+					}		
+				}
+			</tbody>
+		</table>
+	</div>
+	<div>
+		<h2>Regions with rising consumptions (Last 5 years)</h2>
+		<ul>
+			@foreach (string region in Model.RisingConsumptions)
+			{
+				<li>@region</li>
+			}
+		</ul>
+	</div>
+}

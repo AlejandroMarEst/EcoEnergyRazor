@@ -9,7 +9,7 @@ namespace EcoEnergyRazor.Pages
 {
     public class SimulationsModel : PageModel
     {
-        public List<EnergySystem> Simulations { get; set; } = new List<EnergySystem>(200);
+        public List<EnergySystem> Simulations { get; set; } = new List<EnergySystem> ();
         public bool Empty = false;
         public void OnGet()
         {
