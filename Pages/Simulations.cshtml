@@ -14,19 +14,19 @@
 			</tr>
 		</thead>
 		<tbody>
+			@if (!Model.FileExists || !Model.FileHasRecords)
+			{
+				<tr>No existeix ninguna simulació</tr>
+			}
 			@foreach (var simulation in Model.Simulations)
 			{
-				<tr>
-					@if (Model.Empty)
-					{
-						<td>No existeix ninguna simulació</td>
-					}
+			<tr>
 				<td>@simulation.GetEnergyType()</td>
 				<td>@simulation.GetDate()</td>
 				<td>@simulation.GetEnergy()</td>
 			</tr>
 		}
-	</tbody>
+		</tbody>
 </table>
-<a asp-area="" asp-page="/SimCreator"><button type="button">Create new simulation</button></a>
+<a class="btn btn-primary" asp-page="/SimCreator">Create new simulation</a>
 </div>

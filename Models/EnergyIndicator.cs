@@ -23,7 +23,7 @@ namespace EcoEnergyRazor.Models
         public double CDEEBC_ElectricExchangeBalance { get; set; }
         [Required(ErrorMessage = "This camp is required")]
         public double CDEEBC_ElectricDemand { get; set; }
-        public string CDEEBC_TotalRegulatedMarket { get; set; }
+        public double CDEEBC_TotalRegulatedMarket { get; set; }
         public double CDEEBC_TotalFreeMarket { get; set; }
         public double? FEE_Industry { get; set; }
         public double? FEE_Tertiary { get; set; }
