@@ -5,17 +5,20 @@ using System.Text.Json;
 
 namespace EcoEnergyRazor.Pages
 {
+    // PageModel for inserting a new energy indicator
     public class InsertEnergyIndicatorModel : PageModel
     {
         [BindProperty]
-        public EnergyIndicator EnergyIndicator { get; set; }
+        public EnergyIndicator? EnergyIndicator { get; set; }
         public IActionResult OnPost()
         {
-            string jsonPath = "wwwroot/Files/energy_indicators.json";
-            double defaultValue = 0;
+            const string jsonPath = "wwwroot/Files/energy_indicators.json";
+            const double defaultValue = 0;
+
+            // Create a new EnergyIndicator object with specified and default values
             EnergyIndicator indicator = new EnergyIndicator
             {
-                Date = EnergyIndicator.Date,
+                Date = EnergyIndicator!.Date,
                 PBEE_Hydroelectric = defaultValue,
                 PBEE_Coal = defaultValue,
                 PBEE_NaturalGas = defaultValue,
@@ -30,7 +33,7 @@ namespace EcoEnergyRazor.Pages
                 CDEEBC_TotalNetworkSalesCentral = defaultValue,
                 CDEEBC_ElectricExchangeBalance = defaultValue,
                 CDEEBC_ElectricDemand = EnergyIndicator.CDEEBC_ElectricDemand,
-                CDEEBC_TotalRegulatedMarket = defaultValue.ToString(),
+                CDEEBC_TotalRegulatedMarket = defaultValue,
                 CDEEBC_TotalFreeMarket = defaultValue,
                 FEE_Industry = defaultValue,
                 FEE_Tertiary = defaultValue,
@@ -56,23 +59,33 @@ namespace EcoEnergyRazor.Pages
                 CCAC_AutoGasoline = EnergyIndicator.CCAC_AutoGasoline,
                 CCAC_AutoDieselA = defaultValue
             };
+
             List<EnergyIndicator> existingIndicators;
+
+            // Check if the JSON file exists, create if not
             if (!System.IO.File.Exists(jsonPath))
             {
                 System.IO.File.WriteAllText(jsonPath, "");
             }
+
+            // Read existing indicators from the file
             string jsonFromFile = System.IO.File.ReadAllText(jsonPath);
             if (!string.IsNullOrEmpty(jsonFromFile))
             {
-                existingIndicators = JsonSerializer.Deserialize<List<EnergyIndicator>>(jsonFromFile);
+                existingIndicators = JsonSerializer.Deserialize<List<EnergyIndicator>>(jsonFromFile)!;
             }
             else
             {
                 existingIndicators = new List<EnergyIndicator>();
             }
-            existingIndicators.Add(indicator);
-            string jsonString = JsonSerializer.Serialize(existingIndicators);
-            System.IO.File.WriteAllText(jsonPath, jsonString);
+
+            // Add the new indicator and save the updated list
+            if (existingIndicators != null)
+            {
+                existingIndicators.Add(indicator);
+                string jsonString = JsonSerializer.Serialize(existingIndicators);
+                System.IO.File.WriteAllText(jsonPath, jsonString);
+            }
             return RedirectToPage("EnergeticIndicators");
         }
     }

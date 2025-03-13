@@ -1,8 +1,12 @@
-﻿namespace EcoEnergyRazor.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace EcoEnergyRazor.Models
 {
     public class AvgConsumptions
     {
-        public string Region { get; set; }
+        [Required(ErrorMessage = "This field is necessary")]
+        public string? Region { get; set; }
+        [Required(ErrorMessage = "This field is necessary")]
         public double AverageConsumption { get; set; }
     }
 }

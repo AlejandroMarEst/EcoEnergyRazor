@@ -7,14 +7,20 @@ using CsvHelper.Configuration;
 
 namespace EcoEnergyRazor.Pages
 {
+    // PageModel for displaying saved energy simulations
     public class SimulationsModel : PageModel
     {
-        public List<EnergySystem> Simulations { get; set; } = new List<EnergySystem> ();
-        public bool Empty = false;
+        public List<EnergySystem> Simulations { get; set; } = new List<EnergySystem>();
+        public bool FileExists { get; set; }
+        public bool FileHasRecords { get; set; }
+
         public void OnGet()
         {
-            string filePath = "wwwroot/Files/simulations_energy.csv";
-            if (System.IO.File.Exists(filePath))
+            const string filePath = "wwwroot/Files/simulations_energy.csv";
+            FileExists = System.IO.File.Exists(filePath);
+
+            // If the file exists, read the simulations from the CSV file
+            if (FileExists)
             {
                 using var reader = new StreamReader(filePath);
                 using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
@@ -24,11 +30,8 @@ namespace EcoEnergyRazor.Pages
                     {
                         Simulations.Add(line);
                     }
+                    FileHasRecords = Simulations.Count > 0;
                 }
-            }
-            else
-            {
-                Empty = true;
             }
         }
     }

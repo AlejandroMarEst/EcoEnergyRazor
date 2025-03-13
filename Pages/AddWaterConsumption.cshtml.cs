@@ -8,11 +8,11 @@ namespace EcoEnergyRazor.Pages
     public class AddWaterConsumptionModel : PageModel
     {
         [BindProperty]
-        public WaterConsumptionLog WaterConsumption { get; set; }
+        public WaterConsumptionLog? WaterConsumption { get; set; }
 
         public IActionResult OnPost()
         {
-            string filePath = @"wwwroot/Files/consum_aigua_cat_per_comarques.xml";
+            const string filePath = "wwwroot/Files/consum_aigua_cat_per_comarques.xml";
 
             // Checks if file exists already
             XDocument xmlDoc;
@@ -28,7 +28,7 @@ namespace EcoEnergyRazor.Pages
 
             // Adds new element 
             XElement newConsumption = new XElement("WaterConsumption",
-                new XElement("Year", WaterConsumption.Year),
+                new XElement("Year", WaterConsumption!.Year),
                 new XElement("Region",
                     new XElement("ID", WaterConsumption.RegionID),
                     new XElement("Name", WaterConsumption.RegionName)
@@ -40,11 +40,14 @@ namespace EcoEnergyRazor.Pages
                 new XElement("DomesticConsumption", WaterConsumption.DomesticConsumption)
             );
 
-            // Adds new water consumption 
-            xmlDoc.Root.Add(newConsumption);
+            if(xmlDoc.Root!=null)
+            {
+                // Adds new water consumption 
+                xmlDoc.Root.Add(newConsumption);
 
-            // Saves XML document
-            xmlDoc.Save(filePath);
+                // Saves XML document
+                xmlDoc.Save(filePath);
+            }
 
             return RedirectToPage("WaterConsumption");
         }
