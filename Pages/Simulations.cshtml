@@ -9,8 +9,13 @@
 		<thead>
 			<tr>
 				<th>Type</th>
-				<th>Creation Date</th>
+				<th>Date</th>
+				<th>Ratio</th>
 				<th>Energy</th>
+				<th>Cost</th>
+				<th>Total Cost</th>
+				<th>Price</th>
+				<th>Total Price</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -23,7 +28,12 @@
 			<tr>
 				<td>@simulation.GetEnergyType()</td>
 				<td>@simulation.GetDate()</td>
-				<td>@simulation.GetEnergy()</td>
+				<td>@simulation.Ratio</td>
+				<td>@simulation.Energy</td>
+				<td>@simulation.Cost</td>
+				<td>@simulation.TotalCost</td>
+				<td>@simulation.Price</td>
+				<td>@simulation.TotalPrice</td>
 			</tr>
 		}
 		</tbody>
